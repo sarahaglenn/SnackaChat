@@ -1,7 +1,11 @@
 import socket
 from threading import Thread
+from dotenv import load_dotenv
+import os
 
-HOST = "127.0.0.1"
+load_dotenv()
+
+HOST = os.getenv("HOST")
 PORT = 5588
 
 def receive_messages(client):
