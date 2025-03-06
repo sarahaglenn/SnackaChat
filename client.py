@@ -40,26 +40,9 @@ def main():
         Thread(target=receive_messages, args=(client,), daemon=True).start()
         send_messages(client)
     except:
-        print("Could not connect to the server.Is it running?")
+        print("Server is disconnected.")
     finally:
         client.close()
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-    # def send_messages():
-    #     while True:
-    #         message = input("You: ")
-    #         if message.lower() == "quit":
-    #             client.sendall(b"quit")
-    #             break
-    #         client.sendall(message.encode("utf-8"))
-
-    # receive_thread = Thread(target=receive_messages, daemon=True)
-    # receive_thread.start()
-
-    # send_messages()

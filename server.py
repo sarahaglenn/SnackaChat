@@ -6,6 +6,8 @@ PORT = 5588
 
 # dictionary to store client information
 clients = {}
+# Global flag to control server shutdown
+server_running = True
 
 
 def handle_clients(conn, addr):
@@ -22,14 +24,13 @@ def handle_clients(conn, addr):
     join_msg = f" {name} has joined the chat"
     broadcast(join_msg, conn)
 
-    while True:
+    while server_running:
         try:
             msg = conn.recv(1024).decode("utf-8")
             if not msg or msg.lower() == "quit":
                 break
-            else:
-                print (f"{name}: {msg}")
-                broadcast(f"{name}: {msg}", conn)
+            print (f"{name}: {msg}")
+            broadcast(f"{name}: {msg}", conn)
         except:
             break
 
@@ -39,27 +40,43 @@ def handle_clients(conn, addr):
     broadcast(f"{name} has left the chat.")
 
 def send_server_message():
-    while True:
+    global server_running
+    while server_running:
         msg = input()
         if msg.lower() == "quit":
             print("Server shutting down...")
             broadcast("Server is shutting down... ", "Server: ")
+            server_running = False
+
+            # Close all client connections
+            for client in list(clients.keys()):
+                try:
+                    client.close()
+                except:
+                    pass
             break
         broadcast(msg, "Server: ")
 
 def broadcast(msg, sender=None):
+    # create correct formatting if it is a server message
     if sender == "Server: ":
         msg = sender + msg
+    # collected disconnected clients to remove
+    disconnected_clients = []
+
     # send message to all clients except the sender
     for client in clients:
         try:
             if client != sender:
                 client.send(msg.encode("utf-8"))
         except:
-            client.close()
-            del clients[client]
+            disconnected_clients.append(client)
+    # Remove the disconnected clients from the dictionary
+    for client in disconnected_clients:
+        del clients[client]
 
 def start_server():
+    global server_running
     # create socket object
     # because of with , no need to call close()
     # Constants passed: AF_INET is internet address family for IPv4, SOCK_STREAM is socket type for TCP
@@ -74,9 +91,18 @@ def start_server():
 
         Thread(target=send_server_message, daemon=True).start()
 
-        while True:
-            conn, addr = server.accept()
-            Thread(target=handle_clients, args=(conn, addr), daemon=True).start()
+        while server_running:
+            try:
+                """allows accept to wait up to 1 second for new client connections.
+                If there is none, it throws timeout exception and server_running is
+                checked again
+                """
+                server.settimeout(1.0)
+                conn, addr = server.accept()
+                Thread(target=handle_clients, args=(conn, addr), daemon=True).start()
+            except socket.timeout:
+                continue
+    print("Server has shut down.")
 
 if __name__ == "__main__":
     start_server()
