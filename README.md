@@ -16,7 +16,7 @@ The purpose of this project was the learn about network communication. I explore
 
 The server also notifies users when someone joins or leaves the chat.
 
-## 🎥 [Software Demo Video](http://youtube.link.goes.here)
+## 🎥 [Software Demo Video](https://youtu.be/o1zpkUVXRoY)
 
 # 🌎 Network Communication
 
@@ -48,9 +48,9 @@ The app uses multithreading to allow multiple simultaneous actions, such as:
 
 # 🔮 Future Work
 
-  📌 Add GUI to improve the user experience  
+  📌 Finish implementing GUI to improve the user experience  
   📌 Send messages in JSON format and with username, timestamp, and the message  
   📌 Add formatting to make it clearer which messages are out-going  
-  📌 Put code that is common between server and client in a separate module
+  📌 Put code that is common between server and client in a separate module 
 
 P.S. 🇸🇪 In Swedish, "snacka" means to chit chat!
