@@ -1,6 +1,6 @@
 # 💬 Snacka Chat App
 
-The purpose of this project was the learn about network communication. I explored sending data over a TCP connection using the Python socket library to create a real-time chat application. The app allows multiple users to connect to a server and participate in a multi-way conversation. I also implemented multithreading to both the clients and the server to send and receive messages simultaneously.
+The purpose of this project was to learn about network communication. I explored sending data over a TCP connection using the Python socket library to create a real-time chat application. The app allows multiple users to connect to a server and participate in a multi-way conversation. I also implemented multithreading to both the clients and the server to send and receive messages simultaneously.
 
 ## 🚀 How to Use
 1️⃣ **Set up the environment**
