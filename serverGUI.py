@@ -2,11 +2,12 @@ import socket
 from threading import Thread
 from dotenv import load_dotenv
 import os
+from tkinter import *
 
 load_dotenv()
 
 HOST = os.getenv("HOST")
-PORT = 5588
+PORT = 5590
 
 # dictionary to store client information
 clients = {}
@@ -18,7 +19,7 @@ def handle_clients(conn, addr):
     # get client name and add them to dictionary
     name = conn.recv(1024).decode("utf-8")
     clients[conn] = name
-    print(f"{name} has connected. ")
+    print(f"{name} has connected from {addr}")
 
     # send new client a welcome message
     welcome_msg = f"Welcome to the chat {name}"
@@ -81,6 +82,7 @@ def broadcast(msg, sender=None):
 
 def start_server():
     global server_running
+
     # create socket object
     # because of with , no need to call close()
     # Constants passed: AF_INET is internet address family for IPv4, SOCK_STREAM is socket type for TCP
@@ -110,3 +112,21 @@ def start_server():
 
 if __name__ == "__main__":
     start_server()
+
+
+# Ideas for sending data using JSON instead:
+# import json
+# # example message contents:
+# msg_data = {
+#     "sender": "User123",
+#     "message": "Hello",
+#     "timestamp": dateTime.Now()
+# }
+# # Convert to JSON and send
+# msg_json = json.dumps(msg_data)
+# client.send(msg_json.encode("utf-8"))
+# # When receiving decode and parse
+# msg_json = conn.recv(1024).decode("utf-8")
+# msg_data = json.loads(msg_json)
+# print(f"{msg_data['timestamp']} - {msg_data['sender']}: {msg_data['message']}")
+
