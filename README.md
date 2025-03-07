@@ -1,41 +1,55 @@
-# Overview
+# 💬 Snacka Chat App
 
-{Important!  Do not say in this section that this is college assignment.  Talk about what you are trying to accomplish as a software engineer to further your learning.}
+The purpose of this project was the learn about network communication. I explored sending data over a TCP connection using the Python socket library to create a real-time chat application. The app allows multiple users to connect to a server and participate in a multi-way conversation. I also implemented multithreading to both the clients and the server to send and receive messages simultaneously.
 
-{Provide a description the networking program that you wrote. Describe how to use your software.  If you did Client/Server, then you will need to describe how to start both.}
+## 🚀 How to Use
+1️⃣ **Set up the environment**
+  - Create a .env file in the server and client(s) environments with the server IP address as HOST.
+  - Install dependencies using requirements.txt
 
-{Describe your purpose for writing this software.}
+2️⃣ **Start the Server**
+  - Run the server script. Once started, it listens for incoming client connections
 
-{Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the software running (you will need to show two pieces of software running and communicating with each other) and a walkthrough of the code.}
+3️⃣ **Connect Clients**
+  - Run the client script on any machine and connect to the chat.
+  - The server broadcasts messages to/from all clients
 
-[Software Demo Video](http://youtube.link.goes.here)
+The server also notifies users when someone joins or leaves the chat.
 
-# Network Communication
+## 🎥 [Software Demo Video](http://youtube.link.goes.here)
 
-{Describe the architecture that you used (client/server or peer-to-peer)}
+# 🌎 Network Communication
 
-{Identify if you are using TCP or UDP and what port numbers are used.}
+✅ Architecture: Client/Server  
+✅ Protocol: TCP  
+✅ Port: 5588  
+✅ Message Format: UTF-8 encoded strings
 
-{Identify the format of messages being sent between the client and server or the messages sent between two peers.}
+The app uses multithreading to allow multiple simultaneous actions, such as:
+  * Sending adn receiving messages in real-time
+  * Listening for new client connections without blocking other tasks.
 
-# Development Environment
+# 🛠️ Development Environment
 
-{Describe the tools that you used to develop the software}
+* IDE: Visual Studio Code
+* Language: Python 3.12.2
+* Libraries:
+    * socket
+    * threading
+    * dotenv
 
-{Describe the programming language that you used and any libraries.}
+# 🕸️ Useful Websites
 
-# Useful Websites
-
-{Make a list of websites that you found helpful in this project}
-* [Web Site Name](http://url.link.goes.here)
-* [Web Site Name](http://url.link.goes.here)
-https://beej.us/guide/bgnet/pdf/bgnet_usl_c_1.pdf
-https://realpython.com/python-sockets/
+* [Python Docs: Socket — Low-level networking interface](https://docs.python.org/3/library/socket.html)
+* [Real Python: Socket Programming in Python (Guide)](https://realpython.com/python-sockets/)
 * [The Simplest Python Chat You Can Build](https://www.youtube.com/watch?v=Ar94t2XhKzM&ab_channel=NeuralNine)
+* [Medium: Chat Room Application in Python](https://medium.com/@jkishan421/chat-room-application-in-python-part-i-9193d768dc64)
+* [Beej’s Guide to Network Programming](https://beej.us/guide/bgnet/pdf/bgnet_usl_c_1.pdf)
 
-# Future Work
+# 🔮 Future Work
 
-{Make a list of things that you need to fix, improve, and add in the future.}
-* Item 1
-* Item 2
-* Item 3
+  📌 Add GUI to improve the user experience  
+  📌 Add formatting to make it clearer which messages are out-going  
+  📌 Put code that is common between server and client in a separate module
+
+P.S. 🇸🇪 In Swedish, "snacka" means to chit chat!
