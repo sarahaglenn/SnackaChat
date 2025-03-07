@@ -21,7 +21,7 @@ The server also notifies users when someone joins or leaves the chat.
 # 🌎 Network Communication
 
 ✅ Architecture: Client/Server  
-✅ Protocol: TCP  
+✅ Protocol: TCP (Transmission Control Protocol)  
 ✅ Port: 5588  
 ✅ Message Format: UTF-8 encoded strings
 
@@ -49,6 +49,7 @@ The app uses multithreading to allow multiple simultaneous actions, such as:
 # 🔮 Future Work
 
   📌 Add GUI to improve the user experience  
+  📌 Send messages in JSON format and with username, timestamp, and the message  
   📌 Add formatting to make it clearer which messages are out-going  
   📌 Put code that is common between server and client in a separate module
 
